@@ -49,6 +49,15 @@ class Arquivo
         array_shift($file);
     }
 
+    public function validaEmpresa()
+    {
+        if (strtolower(trim($this->cabecalho->getEmpresa())) != 'unipago solucoes cobranca ltda') {
+            throw new \Exception("Arquivo não é referente a empresa correta.");
+        }
+
+        echo 'Arquivo válido'."\n";
+    }
+
     private function setRodape(&$file): void
     {
         while (empty(end($file))){
