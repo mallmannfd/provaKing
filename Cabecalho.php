@@ -15,6 +15,9 @@ class Cabecalho
 
     private $banco;
 
+    /**
+     * @var \DateTime
+     */
     private $data;
 
     public function __construct(string $cabecalho)
@@ -59,7 +62,7 @@ class Cabecalho
     /**
      * @return mixed
      */
-    public function getData()
+    public function getData(): \DateTime
     {
         return $this->data;
     }
@@ -69,6 +72,6 @@ class Cabecalho
      */
     public function setData($data)
     {
-        $this->data = substr($data, 94, 6);
+        $this->data = \DateTime::createFromFormat('dmy', substr($data, 94, 6));
     }
 }
