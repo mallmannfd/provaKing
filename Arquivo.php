@@ -11,13 +11,16 @@ namespace Unipago;
 
 class Arquivo
 {
+    /**
+     * @var Cabecalho
+     */
     private $cabecalho;
 
     private $corpo;
 
     private $rodape;
 
-    public function __construct($fileContents)
+    public function __construct(string $fileContents)
     {
         $file = explode("\n", $fileContents);
         $this->setCabecalho($file);
@@ -25,7 +28,7 @@ class Arquivo
         $this->setCorpo($file);
     }
 
-    public function getCabecalho(): string
+    public function getCabecalho(): Cabecalho
     {
         return $this->cabecalho;
     }
@@ -42,7 +45,7 @@ class Arquivo
 
     private function setCabecalho(&$file): void
     {
-        $this->cabecalho = $file[0];
+        $this->cabecalho = new Cabecalho($file[0]);
         array_shift($file);
     }
 
