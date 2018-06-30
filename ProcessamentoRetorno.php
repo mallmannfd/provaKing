@@ -4,17 +4,18 @@ namespace Unipago;
 
 class ProcessamentoRetorno {
 
+    /**
+     * @var Arquivo
+     */
     private $_arquivo;
 
     public function __construct($configuracao) {
-        $this->_arquivo = file_get_contents($configuracao->toArray()['local_arquivo']);
+        $this->_arquivo = new Arquivo(file_get_contents($configuracao->toArray()['local_arquivo']));
 
         echo "iniciando processamento do arquivo \n";
     }
 
     public function processar() {
-        
-        $todoArquivo = explode("\n",$this->_arquivo);
 
         for ($i=0; $i < count($todoArquivo); $i++) { 
             if ($i == '0') {
