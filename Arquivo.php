@@ -78,7 +78,6 @@ class Arquivo
                     echo "Valor incorreto \n";
                 }
             } else {
-                var_dump($titulo);exit;
                 echo "Tipo de entrada não encontrado \n";
             }
         }
