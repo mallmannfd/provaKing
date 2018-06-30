@@ -7,7 +7,7 @@ class ProcessamentoRetorno {
     private $_arquivo;
 
     public function __construct($configuracao) {
-        $this->_arquivo = file_get_contents(trim($configuracao->toArray()['local_arquivo']));
+        $this->_arquivo = file_get_contents($configuracao->toArray()['local_arquivo']);
 
         echo "iniciando processamento do arquivo \n";
     }
