@@ -11,41 +11,21 @@ class ProcessamentoRetorno {
 
     public function __construct($configuracao) {
         $this->_arquivo = new Arquivo(file_get_contents($configuracao->toArray()['local_arquivo']));
-
-        echo "iniciando processamento do arquivo \n";
     }
 
     public function processar() {
 
-        for ($i=0; $i < count($todoArquivo); $i++) { 
-            if ($i == '0') {
-                $tipo_linha = 'cabecalho';
-            } else {
-                if (substr($todoArquivo[$i], 0, 1) == '1') {
-                    $tipo_linha = 'corpo';
-                } else {
-                    $tipo_linha = 'rodape';
-                }
-            }
+        try{
+            $this->_arquivo->validaEmpresa();
+            echo "Iniciando processamento do arquivo do dia : " . $this->_arquivo->getCabecalho()->getData()->format('Y-m-d');
+            
+        }catch (\Exception $e){
+            echo $e->getMessage();
+        }
+        exit;
 
             switch ($tipo_linha) {
-                case 'cabecalho':
-                    $empresa = substr($todoArquivo[$i], 46, 30);
-                    $banco = substr($todoArquivo[$i], 79, 15);
-                    $data = substr($todoArquivo[$i], 94, 6);
 
-                    $dia = substr($data, 0, 2);
-                    $mes = substr($data, 2, 2);
-                    $ano = '20'.substr($data, 4, 2);
-                    var_dump($ano.'-'.$mes.'-'.$dia);
-
-                    if (strtolower(trim($empresa)) == 'unipago solucoes cobranca ltda') {
-                        echo 'Arquivo válido'."\n";
-                    } else {
-                        throw new \Exception("Arquivo não é referente a empresa correta.");
-                    }
-                    break;
-                
                 case 'corpo':
                     $nosso_numero = substr($todoArquivo[$i], 62, 8);
                     $valorPago = substr($todoArquivo[$i], 152, 13) / 100; 
@@ -85,6 +65,5 @@ class ProcessamentoRetorno {
 
                     break;
             }
-        }
     }
 }
