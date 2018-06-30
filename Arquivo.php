@@ -43,12 +43,6 @@ class Arquivo
         return $this->rodape;
     }
 
-    private function setCabecalho(&$file): void
-    {
-        $this->cabecalho = new Cabecalho($file[0]);
-        array_shift($file);
-    }
-
     public function validaEmpresa()
     {
         if (strtolower(trim($this->cabecalho->getEmpresa())) != 'unipago solucoes cobranca ltda') {
@@ -81,6 +75,28 @@ class Arquivo
                 echo "Tipo de entrada não encontrado \n";
             }
         }
+    }
+
+    public function validaImportacao()
+    {
+        $valorTotal = substr($this->rodape, 220, 14) / 100;
+
+        $totalDoArquivo = 0;
+        for ($i=0; $i < count($this->corpo); $i++) {
+            $totalDoArquivo += substr($this->corpo[$i], 152, 13) / 100;
+        }
+
+        if (number_format($valorTotal, 2) != number_format($totalDoArquivo, 2)) {
+            throw new \Exception("Arquivo inconsistente");
+        } else {
+            echo "arquivo importado com sucesso \n";
+        }
+    }
+
+    private function setCabecalho(&$file): void
+    {
+        $this->cabecalho = new Cabecalho($file[0]);
+        array_shift($file);
     }
 
     private function setRodape(&$file): void
