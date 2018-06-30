@@ -58,8 +58,14 @@ class Arquivo
             $nosso_numero = substr($titulo, 62, 8);
             $valorPago = substr($titulo, 152, 13) / 100;
             $tarifa = substr($titulo, 175, 13) / 100;
-            $juros = substr($titulo, 266, 13) / 100;
-            $creditado = substr($titulo, 253, 13) / 100;
+            $juros = substr($titulo, 266, 13);
+            if (intval($juros) != 0){
+                $juros = $juros  / 100;
+            }
+            $creditado = substr($titulo, 253, 13);
+            if (intval($creditado) != 0){
+                $creditado = $creditado / 100;
+            }
             $ocorrencia = substr($titulo, 108, 2);
 
             $arrayOcorrencias = array('06','09');
@@ -72,6 +78,7 @@ class Arquivo
                     echo "Valor incorreto \n";
                 }
             } else {
+                var_dump($titulo);exit;
                 echo "Tipo de entrada não encontrado \n";
             }
         }
@@ -105,6 +112,7 @@ class Arquivo
             array_pop($file);
         }
         $this->rodape = end($file);
+        array_pop($file);
     }
 
     private function setCorpo($file): void
