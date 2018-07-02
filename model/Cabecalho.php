@@ -6,7 +6,7 @@
  * Time: 18:06
  */
 
-namespace Unipago;
+namespace Unipago\model;
 
 
 class Cabecalho

@@ -2,6 +2,8 @@
 
 namespace Unipago;
 
+use Unipago\model\Arquivo;
+
 class ProcessamentoRetorno {
 
     /**

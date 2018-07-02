@@ -6,8 +6,10 @@
  * Time: 17:34
  */
 
-namespace Unipago;
+namespace Unipago\model;
 
+
+use Unipago\ApiPagamentos;
 
 class Arquivo
 {
