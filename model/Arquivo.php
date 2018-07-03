@@ -118,6 +118,12 @@ class Arquivo
 
     private function setCorpo($file): void
     {
-        $this->corpo = $file;
+        $titulos = [];
+        foreach ($file as $line){
+            $titulo = new Titulo($line);
+            $titulos[] = $titulo;
+        }
+
+        $this->corpo = $titulos;
     }
 }
