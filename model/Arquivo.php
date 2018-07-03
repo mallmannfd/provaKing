@@ -72,9 +72,9 @@ class Arquivo
 
         if (number_format($valorTotal, 2) != number_format($totalDoArquivo, 2)) {
             throw new \Exception("Arquivo inconsistente");
-        } else {
-            echo "arquivo importado com sucesso \n";
         }
+
+        echo "arquivo importado com sucesso \n";
     }
 
     private function setCabecalho(&$file): void
