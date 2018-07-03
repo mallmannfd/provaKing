@@ -9,7 +9,7 @@
 namespace Unipago\model;
 
 
-class Cabecalho
+class Cabecalho extends BaseModel
 {
     private $empresa;
 

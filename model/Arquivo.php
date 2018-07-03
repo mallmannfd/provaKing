@@ -8,7 +8,7 @@
 
 namespace Unipago\model;
 
-class Arquivo
+class Arquivo extends BaseModel
 {
     /**
      * @var Cabecalho
@@ -21,6 +21,7 @@ class Arquivo
 
     public function __construct(string $fileContents)
     {
+        parent::__construct();
         $file = explode("\n", $fileContents);
         $this->setCabecalho($file);
         $this->setRodape($file);
@@ -57,6 +58,7 @@ class Arquivo
     public function validaEmpresa()
     {
         if (strtolower(trim($this->cabecalho->getEmpresa())) != 'unipago solucoes cobranca ltda') {
+            $this->errorLogger->error('Houve um erro ao validar o arquivo: Arquivo não é referente a empresa correta.');
             throw new \Exception("Arquivo não é referente a empresa correta.");
         }
 

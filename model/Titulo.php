@@ -11,7 +11,7 @@ namespace Unipago\model;
 
 use Unipago\ApiPagamentos;
 
-class Titulo
+class Titulo extends BaseModel
 {
     const OCORRENCIAS = ['06', '09'];
 

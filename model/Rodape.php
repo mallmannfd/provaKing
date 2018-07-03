@@ -9,7 +9,7 @@
 namespace Unipago\model;
 
 
-class Rodape
+class Rodape extends BaseModel
 {
     private $valorTotal;
 
