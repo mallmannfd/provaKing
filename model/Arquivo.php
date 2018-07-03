@@ -8,9 +8,6 @@
 
 namespace Unipago\model;
 
-
-use Unipago\ApiPagamentos;
-
 class Arquivo
 {
     /**
