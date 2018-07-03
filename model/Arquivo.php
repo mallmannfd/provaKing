@@ -57,31 +57,7 @@ class Arquivo
     public function processaTitulos()
     {
         foreach ($this->corpo as $titulo){
-            $nosso_numero = substr($titulo, 62, 8);
-            $valorPago = substr($titulo, 152, 13) / 100;
-            $tarifa = substr($titulo, 175, 13) / 100;
-            $juros = substr($titulo, 266, 13);
-            if (intval($juros) != 0){
-                $juros = $juros  / 100;
-            }
-            $creditado = substr($titulo, 253, 13);
-            if (intval($creditado) != 0){
-                $creditado = $creditado / 100;
-            }
-            $ocorrencia = substr($titulo, 108, 2);
-
-            $arrayOcorrencias = array('06','09');
-
-            if (in_array($ocorrencia, $arrayOcorrencias)) {
-                if (number_format($creditado,2) == number_format($valorPago + $juros - $tarifa, 2)) {
-                    echo "Pagamento do título $nosso_numero efetuado com sucesso \n";
-                    ApiPagamentos::baixaTitulo($nosso_numero, $valorPago);
-                } else {
-                    echo "Valor incorreto \n";
-                }
-            } else {
-                echo "Tipo de entrada não encontrado \n";
-            }
+            $titulo->processa();
         }
     }
 
@@ -91,7 +67,7 @@ class Arquivo
 
         $totalDoArquivo = 0;
         for ($i=0; $i < count($this->corpo); $i++) {
-            $totalDoArquivo += substr($this->corpo[$i], 152, 13) / 100;
+            $totalDoArquivo += $this->corpo[$i]->getValorPago();
         }
 
         if (number_format($valorTotal, 2) != number_format($totalDoArquivo, 2)) {

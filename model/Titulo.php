@@ -9,6 +9,8 @@
 namespace Unipago\model;
 
 
+use Unipago\ApiPagamentos;
+
 class Titulo
 {
     const OCORRENCIAS = ['06', '09'];
@@ -140,5 +142,19 @@ class Titulo
     public function setOcorrencia($ocorrencia)
     {
         $this->ocorrencia = substr($ocorrencia, 108, 2);
+    }
+
+    public function processa()
+    {
+        if (in_array($this->ocorrencia, self::OCORRENCIAS)) {
+            if (number_format($this->creditado,2) == number_format($this->valorPago + $this->juros - $this->tarifa, 2)) {
+                echo "Pagamento do título $this->nossoNumero efetuado com sucesso \n";
+                ApiPagamentos::baixaTitulo($this->nossoNumero, $this->valorPago);
+            } else {
+                echo "Valor incorreto \n";
+            }
+        } else {
+            echo "Tipo de entrada não encontrado \n";
+        }
     }
 }
