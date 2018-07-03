@@ -3,5 +3,8 @@
         "psr-4": {
             "Unipago\\": ""
         }
+    },
+    "require": {
+        "monolog/monolog": "^1.23"
     }
 }
