@@ -38,9 +38,9 @@ class Titulo
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getNossoNumero()
+    public function getNossoNumero(): int
     {
         return $this->nossoNumero;
     }
@@ -54,9 +54,9 @@ class Titulo
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getValorPago()
+    public function getValorPago(): float
     {
         return $this->valorPago;
     }
@@ -70,9 +70,9 @@ class Titulo
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getTarifa()
+    public function getTarifa(): float
     {
         return $this->tarifa;
     }
@@ -86,9 +86,9 @@ class Titulo
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getJuros()
+    public function getJuros(): float
     {
         return $this->juros;
     }
@@ -108,9 +108,9 @@ class Titulo
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getCreditado()
+    public function getCreditado(): float
     {
         return $this->creditado;
     }
@@ -129,9 +129,9 @@ class Titulo
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getOcorrencia()
+    public function getOcorrencia(): int
     {
         return $this->ocorrencia;
     }
@@ -144,6 +144,9 @@ class Titulo
         $this->ocorrencia = substr($ocorrencia, 108, 2);
     }
 
+    /**
+     *
+     */
     public function processa()
     {
         if (in_array($this->ocorrencia, self::OCORRENCIAS)) {

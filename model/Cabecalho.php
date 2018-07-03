@@ -28,9 +28,9 @@ class Cabecalho
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getEmpresa()
+    public function getEmpresa(): string
     {
         return $this->empresa;
     }
@@ -44,9 +44,9 @@ class Cabecalho
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getBanco()
+    public function getBanco(): string
     {
         return $this->banco;
     }
@@ -60,7 +60,7 @@ class Cabecalho
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getData(): \DateTime
     {
