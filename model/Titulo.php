@@ -149,15 +149,15 @@ class Titulo
      */
     public function processa()
     {
-        if (in_array($this->ocorrencia, self::OCORRENCIAS)) {
-            if (number_format($this->creditado,2) == number_format($this->valorPago + $this->juros - $this->tarifa, 2)) {
-                echo "Pagamento do título $this->nossoNumero efetuado com sucesso \n";
-                ApiPagamentos::baixaTitulo($this->nossoNumero, $this->valorPago);
-            } else {
-                echo "Valor incorreto \n";
-            }
-        } else {
-            echo "Tipo de entrada não encontrado \n";
+        if (false == in_array($this->ocorrencia, self::OCORRENCIAS)) {
+            throw new \Exception("Tipo de entrada não encontrado \n");
         }
+
+        if (number_format($this->creditado,2) != number_format($this->valorPago + $this->juros - $this->tarifa, 2)){
+            throw new \Exception("Valor incorreto \n");
+        }
+
+        echo "Pagamento do título $this->nossoNumero efetuado com sucesso \n";
+        ApiPagamentos::baixaTitulo($this->nossoNumero, $this->valorPago);
     }
 }

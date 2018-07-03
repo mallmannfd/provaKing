@@ -63,13 +63,14 @@ class Arquivo
         echo 'Arquivo válido'."\n";
     }
 
-    /**
-     *
-     */
     public function processaTitulos()
     {
         foreach ($this->corpo as $titulo){
-            $titulo->processa();
+            try{
+                $titulo->processa();
+            }catch (\Exception $e){
+                echo $e->getMessage() . "\n";
+            }
         }
     }
 
