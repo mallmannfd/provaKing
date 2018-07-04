@@ -67,6 +67,7 @@ class Arquivo extends BaseModel
 
     public function processaTitulos()
     {
+        $this->reportLogger->info(count($this->corpo) . " Títulos a serem processados");
         foreach ($this->corpo as $titulo){
             try{
                 $titulo->processa();

@@ -19,6 +19,7 @@ class Rodape extends BaseModel
      */
     public function __construct($linha)
     {
+        parent::__construct();
         $this->setValorTotal($linha);
     }
 

@@ -22,6 +22,7 @@ class Cabecalho extends BaseModel
 
     public function __construct(string $cabecalho)
     {
+        parent::__construct();
         $this->setEmpresa($cabecalho);
         $this->setBanco($cabecalho);
         $this->setData($cabecalho);

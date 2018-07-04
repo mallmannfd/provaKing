@@ -29,6 +29,7 @@ class Titulo extends BaseModel
 
     public function __construct($titulo)
     {
+        parent::__construct();
         $this->setNossoNumero($titulo);
         $this->setValorPago($titulo);
         $this->setTarifa($titulo);
@@ -157,6 +158,7 @@ class Titulo extends BaseModel
             throw new \Exception("Valor incorreto \n");
         }
 
+        $this->reportLogger->info("Pagamento do título $this->nossoNumero efetuado com sucesso");
         echo "Pagamento do título $this->nossoNumero efetuado com sucesso \n";
         ApiPagamentos::baixaTitulo($this->nossoNumero, $this->valorPago);
     }
