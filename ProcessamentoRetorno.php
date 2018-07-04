@@ -12,7 +12,11 @@ class ProcessamentoRetorno {
     private $_arquivo;
 
     public function __construct($configuracao) {
-        $this->_arquivo = new Arquivo(file_get_contents($configuracao->toArray()['local_arquivo']));
+        try{
+            $this->_arquivo = new Arquivo(file_get_contents($configuracao->toArray()['local_arquivo']));
+        }catch (\Exception $e){
+            echo "Arquivo enviado não possui formatação correta: " . $e->getMessage();
+        }
     }
 
     public function processar() {

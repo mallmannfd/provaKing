@@ -73,5 +73,8 @@ class Cabecalho extends BaseModel
     public function setData($data)
     {
         $this->data = \DateTime::createFromFormat('dmy', substr($data, 94, 6));
+        if(false == $this->data instanceof \DateTime){
+            throw new \Exception("Formato de data inválido");
+        }
     }
 }
