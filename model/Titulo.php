@@ -146,9 +146,10 @@ class Titulo extends BaseModel
     }
 
     /**
-     *
+     * @return bool
+     * @throws \Exception
      */
-    public function processa()
+    public function processa(): bool
     {
         if (false == in_array($this->ocorrencia, self::OCORRENCIAS)) {
             throw new \Exception("Tipo de entrada não encontrado \n");
