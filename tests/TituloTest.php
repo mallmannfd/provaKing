@@ -52,8 +52,28 @@ class TituloTest extends BaseTestCase
         $this->assertEquals("06", $this->titulo->getOcorrencia(), 'Ocorrência inválida');
     }
 
-    public function deveProcessarOcorrenciaDoTitulo()
+    public function testDeveProcessarOcorrenciaDoTitulo()
     {
         $this->assertTrue($this->titulo->processa(), 'Não processou a ocorrência do Título');
+    }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Tipo de entrada não encontrado
+     */
+    public function testDeveGerarExceptionOcorrenciaIncorretaNoTitulo()
+    {
+        $this->titulo->setOcorrencia("08");
+        $this->titulo->processa();
+    }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Valor incorreto
+     */
+    public function testDeveGerarExceptionValorCreditadoIncorreto()
+    {
+        $this->titulo->setCreditado("0000000000000");
+        $this->titulo->processa();
     }
 }
