@@ -24,6 +24,6 @@ class RodapeTest extends BaseTestCase
 
     public function testGetValorTotal()
     {
-        $this->assertEquals(14112.49, $this->rodape->getValorTotal(), 'Valor inconsistente');
+        $this->assertEquals(85, $this->rodape->getValorTotal(), 'Valor inconsistente');
     }
 }
