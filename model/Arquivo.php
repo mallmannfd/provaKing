@@ -47,7 +47,7 @@ class Arquivo extends BaseModel
     /**
      * @return string
      */
-    public function getRodape(): string
+    public function getRodape(): Rodape
     {
         return $this->rodape;
     }
