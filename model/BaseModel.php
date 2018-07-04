@@ -33,7 +33,7 @@ class BaseModel
     public function setReportLogger()
     {
         $log = new Logger('report');
-        $log->pushHandler(new StreamHandler('logs/report.log', Logger::INFO));
+        $log->pushHandler(new StreamHandler(__DIR__ . '/../logs/report.log', Logger::INFO));
 
         $this->reportLogger = $log;
     }
@@ -41,7 +41,7 @@ class BaseModel
     public function setErrorLogger()
     {
         $log = new Logger('error');
-        $log->pushHandler(new StreamHandler('logs/error.log', Logger::INFO));
+        $log->pushHandler(new StreamHandler(__DIR__ . '/../logs/error.log', Logger::INFO));
         $this->errorLogger = $log;
     }
 }
