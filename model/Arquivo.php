@@ -71,6 +71,7 @@ class Arquivo extends BaseModel
             try{
                 $titulo->processa();
             }catch (\Exception $e){
+                $this->errorLogger->error($e->getMessage());
                 echo $e->getMessage() . "\n";
             }
         }
