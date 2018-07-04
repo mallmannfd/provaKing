@@ -161,6 +161,6 @@ class Titulo extends BaseModel
 
         $this->reportLogger->info("Pagamento do título $this->nossoNumero efetuado com sucesso");
         echo "Pagamento do título $this->nossoNumero efetuado com sucesso \n";
-        ApiPagamentos::baixaTitulo($this->nossoNumero, $this->valorPago);
+        return ApiPagamentos::baixaTitulo($this->nossoNumero, $this->valorPago);
     }
 }
