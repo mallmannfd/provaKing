@@ -19,7 +19,7 @@ class TituloTest extends BaseTestCase
     public function setUp()/* The :void return type declaration that should be here would cause a BC issue */
     {
         parent::setUp();
-        $this->titulo = new Titulo($this->linha);
+        $this->titulo = new Titulo($this->linhaCorpo);
     }
 
     public function testGetNossoNumero()
